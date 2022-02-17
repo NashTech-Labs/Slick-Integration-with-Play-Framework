@@ -8,10 +8,6 @@ import scala.concurrent.Future
 
 class UserProfileService @Inject()(items:UserProfileList) {
 
-  def addUser(item:UserProfile) ={
-    items.add(item)
-  }
-
   def deleteUser(id:Long)={
     items.delete(id)
   }
