@@ -7,7 +7,6 @@
 GET     /                           controllers.HomeController.index()
 GET     /user                  controllers.HomeController.getAll
 GET     /user/:id              controllers.HomeController.getById(id: Long)
-POST    /user/add              controllers.HomeController.addUser
 PUT     /user/update/:id           controllers.HomeController.update(id: Long)
 DELETE  /user/delete/:id         controllers.HomeController.delete(id: Long)
 
