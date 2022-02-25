@@ -23,16 +23,6 @@ def id = column[Long]("id",O.PrimaryKey,O.AutoInc)
 class UserProfileList @Inject()(protected val dbConfigProvider:DatabaseConfigProvider) extends HasDatabaseConfigProvider[JdbcProfile]{
   var users = TableQuery[UserProfileServiceImpl]
 
-  def add(userList:UserProfile):Future[String] ={
-    dbConfig.db.run(users += userList)
-      .map(res => "User list successfully added")
-      .recover{
-        case ex: Exception => {
-          println(ex.getMessage())
-          ex.getMessage
-        }
-      }
-  }
 
   def delete(id:Long) ={
     dbConfig.db.run(users.filter(_.id === id).delete)

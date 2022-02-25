@@ -52,19 +52,6 @@ class HomeController @Inject()(val controllerComponents: ControllerComponents , 
 
   }
 
-  def addUser(): Action[JsValue] = Action.async(parse.json) { implicit request =>
-    request.body.validate[UserProfileData].asOpt
-      .fold {
-        Future.successful(BadRequest("No item added"))
-      } {
-        response =>
-            val newItemAdded = UserProfile(0, response.firstName, response.lastName,response.email)
-            userProfileService.addUser(newItemAdded).map { res =>
-          Redirect(routes.HomeController.getAll)
-            }
-      }
-  }
-
   def update(id: Long):Action[JsValue] = Action(parse.json) { implicit request =>
     request.body.validate[UserProfileData].asOpt
       .fold {
